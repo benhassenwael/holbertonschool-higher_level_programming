@@ -4,4 +4,4 @@ for i in range(0, 26):
         x = 122
     else:
         x = 90
-    print(chr(x - i), end='')
+    print("{}".format(chr(x - i)), end='')
