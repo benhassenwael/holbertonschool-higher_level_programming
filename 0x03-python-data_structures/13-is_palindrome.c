@@ -9,7 +9,7 @@
 int is_palindrome(listint_t **head)
 {
 	listint_t *looper, *mid, *top;
-	unsigned int prev_distance, i = 0;
+	unsigned long int prev_distance, i = 0;
 
 	if (!head || !(*head) || !((*head)->next))
 		return (1);
