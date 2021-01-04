@@ -27,7 +27,7 @@ void print_python_bytes(PyObject *p)
 	printf("[.] bytes object info\n");
 	if (p != NULL && PyBytes_Check(p))
 	{
-		bytes_size = PyBytes_Size(p);
+		bytes_size = ((PyVarObject *)p)->ob_size;
 		bytes_string = ((PyBytesObject *)p)->ob_sval;
 		printf("  size: %ld\n", bytes_size);
 		printf("  trying string: %s\n", bytes_string);
@@ -55,7 +55,7 @@ void print_python_list(PyObject *p)
 
 	if (p != NULL && PyList_Check(p))
 	{
-		list_size = PyList_Size(p);
+		list_size = ((PyVarObject *)p)->ob_size;
 		if (list_size < 0)
 			return;
 		list = (PyListObject *)p;
