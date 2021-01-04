@@ -6,4 +6,5 @@ def safe_print_integer(value):
         import sys
         print("Exception:", e, file=sys.stderr)
         return False
-    return True
+    else:
+        return True
