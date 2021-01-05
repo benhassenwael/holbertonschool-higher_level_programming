@@ -50,7 +50,7 @@ class Square:
                 len(position) != 2 or
                 any(map(lambda x: type(x) is not int or x < 0, position))
                 ):
-            raise TypeError("position must be a tuple of 2 positive integers")
+            raise TypeError("position must be a tuple of 2 positive integer")
         else:
             self.__position = position
 
@@ -72,13 +72,13 @@ class Square:
         """ draw the square on stdout using the '#' character """
         s = ""
         if self.__size == 0:
-            s = "\n"
+            return s
         else:
             s += '\n' * self.__position[1]
-        for i in range(self.__size):
-            s += ' ' * self.__position[0]
-            s += '#' * self.__size
-            if i < (self.__size - 1):
-                s += '\n'
+            for i in range(self.__size):
+                s += ' ' * self.__position[0]
+                s += '#' * self.__size
+                if i < (self.__size - 1):
+                    s += '\n'
 
         return s
