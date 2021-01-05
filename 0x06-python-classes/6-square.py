@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" This module is used as intro to classes """
 class Square:
     """ square class with size(>=0 integer) attribute """
     def __init__(self, size=0, position=(0, 0)):
