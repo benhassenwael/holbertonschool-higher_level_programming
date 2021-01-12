@@ -12,8 +12,8 @@ class Rectangle:
                 width: positive integer
                 height: positive integer
         """
-        self.__width = width
-        self.__height = height
+        self.width = width
+        self.height = height
 
     @property
     def width(self):
@@ -69,7 +69,8 @@ class Rectangle:
         s = ""
         for i in range(self.__height):
             s += "#" * self.__width
-            s += "\n"
+            if i < (self.__height - 1):
+                s += "\n"
         return s
 
     def __repr__(self):
