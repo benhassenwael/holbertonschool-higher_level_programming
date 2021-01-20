@@ -1,33 +1,31 @@
 #!/usr/bin/python3
 """ Script that reads stdin line by line and computes metrics """
-import sys
 
+def print_dict_sorted_nonzero(status_codes):
+    """Subroutine to print status codes with nonzero value in
+    numericalorder.
+    Args:
+        status_codes (dict): dictionary of status codes and the
+            number of times each one has been returned.
+    """
+    sorted_keys = sorted(status_codes.keys())
+    print('\n'.join(["{:d}: {:d}".format(k, status_codes[k])
+                     for k in sorted_keys if status_codes[k] != 0]))
 
-def print_status(file_size, status):
-    """ Print file size and status code """
-    print("File size: {:d}".format(file_size))
-    for code in sorted(status.keys()):
-        if status[code]:
-            print("{:d}: {:d}".format(code, status[code]))
+if __name__ == "__main__":
+    import sys
 
-file_size = 0
-status = {
-        "200": 0,
-        "301": 0,
-        "400": 0,
-        "401": 0,
-        "403": 0,
-        "404": 0,
-        "405": 0,
-        "500": 0
-         }
-try:
-    for i, line in enumerate(sys.stdin, 1):
-        line = line.split()
-        file_size += int(line[-1])
-        status[line[-2]] += 1
-        if i % 10 == 0:
-            print_status(file_size, status)
-except KeyboardInterrupt:
-    print_status(file_size, status)
-    raise
+    try:
+        total = 0
+        status_codes = \
+            {code: 0 for code in [200, 301, 400, 401, 403, 404, 405, 500]}
+        for n, line in enumerate(sys.stdin, 1):
+            words = line.split()
+            total += int(words[-1])
+            status_codes[int(words[-2])] += 1
+            if n % 10 == 0:
+                print("File size: {:d}".format(total))
+                print_dict_sorted_nonzero(status_codes)
+    finally:
+        print("File size: {:d}".format(total))
+        print_dict_sorted_nonzero(status_codes)
