@@ -6,9 +6,9 @@ import sys
 def print_status(file_size, status):
     """ Print file size and status code """
     print("File size: {}".format(file_size))
-    for code, num in status.items():
-        if num:
-            print("{}: {}".format(code, num))
+    for code in sorted(status.keys()):
+        if status[code]:
+            print("{}: {}".format(code, status[code]))
 
 file_size = 0
 status = {
