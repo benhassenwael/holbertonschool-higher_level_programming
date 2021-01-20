@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Script that reads stdin line by line and computes metrics """
 
+
 def print_dict_sorted_nonzero(status_codes):
     """Subroutine to print status codes with nonzero value in
     numericalorder.
