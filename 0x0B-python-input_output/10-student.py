@@ -18,7 +18,7 @@ class Student():
         """ Returning dictionary representation
             of instance attributes
         """
-        if attrs and type(attrs) is list:
+        if attrs and type(attrs) is list or type(attrs) is tuple:
             dict_attr = {}
             for attr in self.__dict__:
                 if attr in attrs:
