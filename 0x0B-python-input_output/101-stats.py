@@ -5,10 +5,10 @@ import sys
 
 def print_status(file_size, status):
     """ Print file size and status code """
-    print("File size: {}".format(file_size))
+    print("File size: {:d}".format(file_size))
     for code in sorted(status.keys()):
         if status[code]:
-            print("{}: {}".format(code, status[code]))
+            print("{:d}: {:d}".format(code, status[code]))
 
 file_size = 0
 status = {
