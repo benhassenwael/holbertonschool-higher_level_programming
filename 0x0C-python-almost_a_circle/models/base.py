@@ -2,6 +2,7 @@
 """ Module Implementing Base class """
 import json
 import csv
+import turtle
 
 
 class Base:
@@ -123,3 +124,38 @@ class Base:
         if not json_string:
             return []
         return json.loads(json_string)
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """ Opens a window and draws all
+            the rectangles and squares
+        """
+        scale = 1.2
+        shape_list = list_rectangles.copy() + list_squares.copy()
+
+        max_width = max(map(lambda r: (r.width + r.x) * scale, shape_list))
+        max_height = max(map(lambda r: (r.height + r.y) * scale, shape_list))
+        win = turtle.Screen()
+        win.setup(width=max_width * scale + 25, height=max_height * scale + 25)
+        win.setworldcoordinates(0, max_height * scale, max_width * scale, 0)
+        
+        turt = turtle.Turtle()
+        turt.hideturtle()
+        turt.pensize(3)
+        win.colormode(255)
+        turt.color((0, 128, 255), (0, 64, 255))
+        
+        for shape in shape_list:
+            turt.penup()
+            turt.goto(shape.x * scale, shape.y * scale)
+            turt.pendown()
+            turt.setheading(0)
+            turt.begin_fill()
+            for i in range(2):
+                turt.forward(shape.width * scale)
+                turt.left(90)
+                turt.forward(shape.height * scale)
+                turt.left(90)
+            turt.end_fill()
+
+        win.exitonclick()
