@@ -66,7 +66,7 @@ class Rectangle(Base):
         if x < 0:
             raise ValueError("x must be >= 0")
         self.__x = x
-    
+
     @property
     def y(self):
         """ Getter of the private field y """
