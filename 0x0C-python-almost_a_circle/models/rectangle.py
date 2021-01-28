@@ -10,10 +10,10 @@ class Rectangle(Base):
     def __init__(self, width, height, x=0, y=0, id=None):
         """ Instance initialization """
         super().__init__(id)
-        self.__width = width
-        self.__height = height
-        self.__x = x
-        self.__y = y
+        self.width = width
+        self.height = height
+        self.x = x
+        self.y = y
 
     @property
     def width(self):
@@ -94,7 +94,7 @@ class Rectangle(Base):
         """
         print('\n' * self.__y, end="")
         for i in range(self.__height):
-            print(' ' * self.__x, '#' * self.__width)
+            print(' ' * self.__x, '#' * self.__width, sep="")
 
     def __str__(self):
         """ Return string representation of

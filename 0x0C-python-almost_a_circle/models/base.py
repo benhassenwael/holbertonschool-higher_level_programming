@@ -108,7 +108,7 @@ class Base:
         Args:
             list_dictionaries: a list of dictionaries
         """
-        if len(list_dictionaries):
+        if list_dictionaries and len(list_dictionaries):
             return json.dumps(list_dictionaries)
         else:
             return "[]"
@@ -138,13 +138,12 @@ class Base:
         win = turtle.Screen()
         win.setup(width=max_width * scale + 25, height=max_height * scale + 25)
         win.setworldcoordinates(0, max_height * scale, max_width * scale, 0)
-        
         turt = turtle.Turtle()
         turt.hideturtle()
         turt.pensize(3)
         win.colormode(255)
         turt.color((0, 128, 255), (0, 64, 255))
-        
+
         for shape in shape_list:
             turt.penup()
             turt.goto(shape.x * scale, shape.y * scale)
