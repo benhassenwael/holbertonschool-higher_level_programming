@@ -11,6 +11,16 @@ from models.base import Base
 
 
 class TestRectangle(unittest.TestCase):
+    def setUp(self):
+        """Redirect stdout to readable buffer to check output of
+        methods relying on print function."""
+        sys.stdout = StringIO()
+
+    def tearDown(self):
+        """Following test completion reassign true stdout file stream to
+        sys.stdout so printing goes to the screen as before."""
+        sys.stdout = sys.__stdout__
+
     def test_property(self):
         """Test for property"""
         Base._Base__nb_object = 0
