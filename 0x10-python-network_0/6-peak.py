@@ -12,9 +12,8 @@ def find_peak(list_of_integers):
         mid = start + ((end - start) // 2)
         if (li[mid - 1] < li[mid] and li[mid + 1] < li[mid]):
             return li[mid]
-        elif (li[mid - 1] > li[mid + 1]):
+        if (li[mid - 1] > li[mid + 1]):
             end = mid
         else:
             start = mid + 1
     return li[start]
-
