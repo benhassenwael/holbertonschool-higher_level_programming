@@ -10,8 +10,9 @@ def print_dict_sorted_nonzero(status_codes):
             number of times each one has been returned.
     """
     sorted_keys = sorted(status_codes.keys())
-    print('\n'.join(["{:d}: {:d}".format(k, status_codes[k])
-                     for k in sorted_keys if status_codes[k] != 0]))
+    for k in sorted_keys:
+        if status_codes[k]:
+            print("{:d}: {:d}".format(k, status_codes[k]))
 
 if __name__ == "__main__":
     import sys
@@ -21,12 +22,15 @@ if __name__ == "__main__":
         status_codes = \
             {code: 0 for code in [200, 301, 400, 401, 403, 404, 405, 500]}
         for n, line in enumerate(sys.stdin, 1):
-            words = line.split()
-            total += int(words[-1])
-            status_codes[int(words[-2])] += 1
-            if n % 10 == 0:
-                print("File size: {:d}".format(total))
-                print_dict_sorted_nonzero(status_codes)
+            try:
+                words = line.split()
+                total += int(words[-1])
+                status_codes[int(words[-2])] += 1
+                if n % 10 == 0:
+                    print("File size: {:d}".format(total))
+                    print_dict_sorted_nonzero(status_codes)
+            except ValueError:
+                pass
     finally:
         print("File size: {:d}".format(total))
         print_dict_sorted_nonzero(status_codes)
